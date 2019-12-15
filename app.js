@@ -5,15 +5,15 @@ const forecast = require('./utils/forecast')
 const location = process.argv[2]
 
 if (location) {
-    geocode(location, (err, res) => {
+    geocode(location, (err, {lat, lon, loc}) => {
         if (err) {
             return console.log(err)
         }
-        forecast(res.lat, res.lon, (error, forecast) => {
+        forecast(lat, lon, (error, forecast) => {
             if (err) {
                 return console.log(err)
             }
-            console.log(res.loc)
+            console.log(loc)
             console.log(forecast)
         })
     })
